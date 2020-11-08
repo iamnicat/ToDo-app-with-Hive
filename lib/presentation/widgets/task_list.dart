@@ -17,6 +17,9 @@ class TaskList extends StatelessWidget {
           checkboxCallback: (checkboxState) {
             taskRepository.updateTask(index, taskData);
           },
+          onLongPressCallback: () {
+            taskRepository.deleteTask(index);
+          },
         );
       },
       itemCount: Hive.box('todo_tasks').length,
