@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app_with_hive/data/models/todo_data.dart';
+import 'package:todo_app_with_hive/data/repositories/task_repository.dart';
 
 class TaskAddPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    String textField;
     return Container(
       decoration: BoxDecoration(
         color: Color(0xFF757575),
@@ -37,9 +40,16 @@ class TaskAddPage extends StatelessWidget {
                     borderSide: BorderSide(color: Color(0xFFE91E63)),
                   ),
                 ),
-                onChanged: (value) {}),
+                onChanged: (value) {
+                  textField = value;
+                }),
             FlatButton(
-              onPressed: () {},
+              onPressed: () {
+                if (textField != null) {
+                  TaskRepository().addTask(TodoData(task: textField));
+                  Navigator.pop(context);
+                }
+              },
               child: Text(
                 'Add Task',
                 style: TextStyle(color: Colors.white),
