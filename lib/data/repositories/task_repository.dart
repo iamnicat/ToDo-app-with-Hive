@@ -8,6 +8,10 @@ class TaskRepository {
 
   Box taskBox = Hive.box('todo_tasks');
 
+  var _filteredData = Hive.box('todo_tasks').values.where((element) {
+    return element.isDone == false;
+  });
+
   void addTask(TodoData todoData) {
     taskBox.add(todoData);
   }
@@ -24,4 +28,8 @@ class TaskRepository {
   void deleteTask(int index) {
     taskBox.deleteAt(index);
   }
+
+  int getDataLength() => taskBox.length;
+
+  int getUnfinishedDataLength() => _filteredData.length;
 }
