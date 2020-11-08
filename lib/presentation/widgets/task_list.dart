@@ -6,16 +6,20 @@ import 'package:todo_app_with_hive/presentation/widgets/task_tile.dart';
 class TaskList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(itemBuilder: (context, index) {
-      final taskData = TaskRepository().getAllTask(index);
+    return ListView.builder(
+      itemBuilder: (context, index) {
+        final taskRepository = TaskRepository();
+        final taskData = taskRepository.getAllTask(index);
 
-      return TaskTile(
-        taskText: taskData.task,
-        isChecked: taskData.isDone,
-      );
-    },
+        return TaskTile(
+          taskText: taskData.task,
+          isChecked: taskData.isDone,
+          checkboxCallback: (checkboxState) {
+            taskRepository.updateTask(index, taskData);
+          },
+        );
+      },
       itemCount: Hive.box('todo_tasks').length,
-
     );
   }
 }
