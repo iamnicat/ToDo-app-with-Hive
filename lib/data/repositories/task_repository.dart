@@ -20,4 +20,8 @@ class TaskRepository {
     taskBox.putAt(
         index, TodoData(task: todoData.task, isDone: !todoData.isDone));
   }
+
+  void deleteTask(int index) {
+    taskBox.deleteAt(index);
+  }
 }
