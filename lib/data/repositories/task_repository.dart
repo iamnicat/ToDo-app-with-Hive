@@ -12,8 +12,7 @@ class TaskRepository {
     taskBox.add(todoData);
   }
 
-  void getAllTask(int index){
-    taskBox.getAt(index);
+  TodoData getAllTask(int index) {
+    return taskBox.getAt(index);
   }
-
 }
