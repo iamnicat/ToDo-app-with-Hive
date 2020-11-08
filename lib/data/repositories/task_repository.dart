@@ -15,4 +15,9 @@ class TaskRepository {
   TodoData getAllTask(int index) {
     return taskBox.getAt(index);
   }
+
+  void updateTask(int index, TodoData todoData) {
+    taskBox.putAt(
+        index, TodoData(task: todoData.task, isDone: !todoData.isDone));
+  }
 }
