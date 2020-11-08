@@ -6,9 +6,9 @@ part 'todo_data.g.dart';
 @HiveType(typeId: 1)
 class TodoData {
   @HiveField(0)
-  String task;
+  final String task;
   @HiveField(1)
-  bool isDone;
+  final bool isDone;
 
   TodoData({@required this.task, this.isDone = false});
 }
