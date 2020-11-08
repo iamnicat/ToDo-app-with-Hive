@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:todo_app_with_hive/data/repositories/task_repository.dart';
 import 'package:todo_app_with_hive/presentation/widgets/task_tile.dart';
 
 class TaskList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final taskRepository = TaskRepository();
     return ListView.builder(
       itemBuilder: (context, index) {
-        final taskRepository = TaskRepository();
         final taskData = taskRepository.getAllTask(index);
 
         return TaskTile(
@@ -22,7 +21,7 @@ class TaskList extends StatelessWidget {
           },
         );
       },
-      itemCount: Hive.box('todo_tasks').length,
+      itemCount: taskRepository.getDataLength(),
     );
   }
 }
