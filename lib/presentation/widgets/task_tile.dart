@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 class TaskTile extends StatelessWidget {
   final bool isChecked;
   final String taskText;
+  final Function checkboxCallback;
 
-  TaskTile({@required this.taskText, @required this.isChecked});
+
+  TaskTile({@required this.taskText, @required this.isChecked,@required this.checkboxCallback});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class TaskTile extends StatelessWidget {
             decoration: isChecked ? TextDecoration.lineThrough : null),
       ),
       trailing: Checkbox(
-        value: isChecked, onChanged: (bool value) {  },
+        value: isChecked, onChanged: checkboxCallback,
       ),
     );
   }
