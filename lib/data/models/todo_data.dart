@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
 
 part 'todo_data.g.dart';
@@ -9,5 +10,5 @@ class TodoData {
   @HiveField(1)
   bool isDone;
 
-  TodoData({this.task, this.isDone = false});
+  TodoData({@required this.task, this.isDone = false});
 }
